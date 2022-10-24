@@ -20,6 +20,7 @@ public class ListingsController {
     @Autowired
     ListingService listingService;
 
+
     @Value("${spring.application.name}")
     String appName;
 
@@ -49,12 +50,6 @@ public class ListingsController {
         return "redirect:/";
     }
 
-    @GetMapping("/printViewPage")
-    public String passParametersWithModelMap(ModelMap map) {
-        map.addAttribute("welcomeMessage", "welcome");
-        map.addAttribute("message", "Baeldung");
-        return "viewPage";
-    }
 
     @GetMapping("/")
     public String home(Model model) {
@@ -75,14 +70,30 @@ public class ListingsController {
     }
 
     @GetMapping("/find")
-    public String findById(@RequestParam Integer id, Model model) {
+    public String findById(@RequestParam("id") Integer id, Model model) {
         Listing listing = listingService.findById(id);
+        if(listing == null){
+            model.addAttribute("id", id);
+            return "listingNotFound";
+        }
         model.addAttribute("listing", listing);
         return "listingDetails";
     }
 
+    @GetMapping("listing/{id}/buy")
+    public String buy(@PathVariable String id){
+        listingService.findById(Integer.valueOf(id)).setStatus(0);
+        return "purchaseConfirmation";
+    }
 
 
+
+    @GetMapping("/printViewPage")
+    public String passParametersWithModelMap(ModelMap map) {
+        map.addAttribute("welcomeMessage", "welcome");
+        map.addAttribute("message", "Baeldung");
+        return "viewPage";
+    }
 
 
     @GetMapping("/greeting/{name}")

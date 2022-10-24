@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>YeeBay-All Listins </title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2" align="center">
+
+    <h2><span th:text="${listing.getTitle()}"/></h2>
+    <h2>Item ID:<span th:text="${listing.getId()}"/></h2>
+    <h4>Category: <span th:text="${listing.getCategory()}"/></h4>
+    <h4>Brand: <span th:text="${listing.getBrand()}"/></h4>
+    <h4>Condition: <span th:text="${listing.getItemCondition()}"/></h4>
+    <h4>Price: <span th:text="${listing.getPrice()}"/></h4>
+    <h4>Description</h4>
+    <div class="all-classes-container my-2">
+        <p><span th:text="${listing.getDescription()}"/></p>
+    </div>
+
+    <div>
+        <a th:href="@{/listing/{id}/buy(id=${listing.getId()})}"
+           class="btn btn-primary">Buy it</a>
+    </div>
+</div>
+
+
+</body>
+</html>
+

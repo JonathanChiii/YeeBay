@@ -1,16 +1,20 @@
-<%@ page import="com.yeebay.model.Listing, java.util.List" %>
-<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>YeeBay-All Listings </title>
+    <title>YeeBay-All Listins </title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
 </head>
 <body>
 
 <div class="container my-2" align="center">
 
-    <div>Web Application. Passed parameter : th:text="${message}"</div>
     <h3>All Listings</h3>
-    <a th:href="@{/addnew}" class="btn btn-primary btn-sm mb-3" >Add New</a>
+    <a th:href="@{/}" class="btn btn-primary btn-sm mb-3" >Add New</a>
     <table style="width:80%" border="1"
            class = "table table-striped table-responsive-md">
         <thead>
@@ -21,7 +25,7 @@
             <th>Brand</th>
             <th>Condition</th>
             <th>Price</th>
-            <th>Link</th>
+            <th>Details</th>
         </tr>
         </thead>
         <tbody>
@@ -32,8 +36,8 @@
             <td th:text="${listing.getBrand()}"></td>
             <td th:text="${listing.getItemCondition()}"></td>
             <td th:text="${listing.getPrice()}"></td>
-            <td> <a th:href="@{/find/?id=${listing.getId()}}"
-                    class="btn btn-primary">Link</a>
+            <td> <a th:href="@{/find?id={id}(id=${listing.getId()}) }"
+                    class="btn btn-primary">Show More</a>
             </td>
         </tr>
         </tbody>
