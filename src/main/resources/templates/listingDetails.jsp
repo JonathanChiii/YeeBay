@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8">
