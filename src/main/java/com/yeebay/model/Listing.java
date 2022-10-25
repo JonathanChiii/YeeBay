@@ -65,17 +65,4 @@ public class Listing {
                 ", lastModified=" + lastModified +
                 '}';
     }
-
-    public void setAllAttributes(Listing listing){
-        //set all field of this instead of
-        //id, dateCreated;
-        this.title = listing.getTitle();
-        this.category = listing.getCategory();
-        this.itemCondition = listing.getItemCondition();
-        this.price = listing.getPrice();
-        this.description = listing.getDescription();
-        this.status = listing.getStatus();
-        this.lastModified = listing.getLastModified();
-    }
-
 }

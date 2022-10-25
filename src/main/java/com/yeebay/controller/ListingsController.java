@@ -3,6 +3,7 @@ package com.yeebay.controller;
 import com.yeebay.model.Listing;
 import com.yeebay.model.User;
 import com.yeebay.service.ListingService;
+import com.yeebay.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -81,8 +82,11 @@ public class ListingsController {
     }
 
     @GetMapping("listing/{id}/buy")
-    public String buy(@PathVariable String id){
-        listingService.findById(Integer.valueOf(id)).setStatus(0);
+    public String buy(@PathVariable String id, Model model){
+        Listing l = listingService.findById(Integer.valueOf(id));
+        l.setStatus(0);
+        listingService.update(l);
+        model.addAttribute("listing", l);
         return "purchaseConfirmation";
     }
 

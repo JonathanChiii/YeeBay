@@ -16,12 +16,12 @@ public class ListingServiceImpl implements ListingService {
     @Override
     public Listing findById(Integer id) {
         //return listingRepository.getReferenceById(id); this will throw EntityNotFoundException
-        return listingRepository.findById(id).orElse(null);
+        return listingRepository.findById(id).filter(e->e.getStatus()==1).orElse(null);
     }
 
     @Override
     public List<Listing> findAll() {
-        return listingRepository.findAll();
+        return listingRepository.findAll().stream().filter(l->l.getStatus()==1).toList();
     }
 
     @Override
@@ -34,7 +34,8 @@ public class ListingServiceImpl implements ListingService {
         Boolean result = Boolean.FALSE;
         Listing l = listingRepository.findById(listing.getId()).orElse(null);
         if (l != null) {
-            l.setAllAttributes(listing);
+            listingRepository.save(listing);
+            //l.setAllAttributes(listing);
             result = Boolean.TRUE;
         } else {
             System.out.println("The Listing id" + listing.getId() + "does not meet our record.");
@@ -43,19 +44,19 @@ public class ListingServiceImpl implements ListingService {
     }
 
 
-    @Override
-    public Boolean deleteById(Integer id) //throws IllegalArgumentException
-    {
-        Boolean result = false;
-        if (listingRepository.findById(id).isPresent()) {
-            listingRepository.deleteById(id);
-            result = true;
-        } else {
-            //throw new IllegalArgumentException("Id: " + id + "does not meet our records.");
-            result = false;
-        }
-        return result;
-    }
+//    @Override
+//    public Boolean deleteById(Integer id) //throws IllegalArgumentException
+//    {
+//        Boolean result = false;
+//        if (listingRepository.findById(id).isPresent()) {
+//            listingRepository.deleteById(id);
+//            result = true;
+//        } else {
+//            //throw new IllegalArgumentException("Id: " + id + "does not meet our records.");
+//            result = false;
+//        }
+//        return result;
+//    }
 
     @Override
     public List<Listing> findByCategory(String category) {

@@ -15,7 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 public class User {
     @Id
-    @Setter(AccessLevel.PROTECTED)
+    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
