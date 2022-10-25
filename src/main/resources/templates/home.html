@@ -13,6 +13,27 @@
 <body>
 <h1>Hello, <span th:text="${userName}"/></h1>
 <p>Welcome to <span th:text = "${appName}"/> !</p>
+
+<!--
+<input type="text" value="${searchId}" name = "searchId" placeholder="Search item id">
+
+ this can be used to auto-fill the content of the text box.
+
+<input type="text"  field="*{searchId}" name = "searchId" placeholder = "Search item id">
+<a th:href="@{/find?id={id}(id=${searchId}) }"  class="btn btn-primary">Search</a> <br>
+-->
+<form action="#" th:action="@{/find?id={id}(id=${id})}" th:object="${searchId}"
+      method="POST">
+    <input type="text" field="*{id}" name = "id" placeholder="Search item by id"
+           class="form-control mb-4 col-4">
+    <button type="submit" class="btn btn-info col-2">search</button>
+</form>
+
+
+<a th:href="@{/all}"> See all list items</a> <br>
+<a th:href="@{/listing/new}"> List a new item</a>
+
+
 </body>
 </html>
 

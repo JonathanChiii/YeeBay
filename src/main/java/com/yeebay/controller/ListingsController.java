@@ -1,9 +1,10 @@
 package com.yeebay.controller;
 
+import com.yeebay.dto.ListingValidation;
 import com.yeebay.model.Listing;
 import com.yeebay.model.User;
 import com.yeebay.service.ListingService;
-import com.yeebay.service.UserService;
+import com.yeebay.service.ListingValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,7 +22,8 @@ public class ListingsController {
 
     @Autowired
     ListingService listingService;
-
+    @Autowired
+    ListingValidationService listingValidationService;
 
     @Value("${spring.application.name}")
     String appName;
@@ -81,7 +84,7 @@ public class ListingsController {
         return "listingDetails";
     }
 
-    @GetMapping("listing/{id}/buy")
+    @GetMapping ("listing/{id}/buy")// the verb has to be get?
     public String buy(@PathVariable String id, Model model){
         Listing l = listingService.findById(Integer.valueOf(id));
         l.setStatus(0);
@@ -90,7 +93,18 @@ public class ListingsController {
         return "purchaseConfirmation";
     }
 
+    @GetMapping("/listing/new")
+    public String newListing() {
+        return "newListing";
+    }
 
+
+    @RequestMapping(value = "/listing/new/validate", method = RequestMethod.POST, produces = "text/html")
+    public String validateListing(@ModelAttribute("ListingValidation") @Valid ListingValidation listingValidation){
+        System.out.println(listingValidation.toString());
+        listingService.save(listingValidation);
+        return "redirect:/all";
+    }
 
     @GetMapping("/printViewPage")
     public String passParametersWithModelMap(ModelMap map) {

@@ -1,0 +1,6 @@
+id,brand,category,date_created,description,item_condition,last_modified,price,status,title,seller_id
+1,Apple,"Phone & Tablet","2022-10-25 00:27:56","256GB, color is Deep purple",Used,"2022-10-25 00:27:56",999,1,"iPhone 14 Pro",2
+2,Pearson,Book,"2022-10-25 00:29:55","Tutorial for Java programing language with Java 8 features.","Like New","2022-10-25 00:29:55",9.99,1,"Java For Everyone 2nd Edition",NULL
+3,Microsoft,Console,"2022-10-25 00:31:18","No Controller.",Used,"2022-10-25 00:31:18",299,1,"Xbox Series S White 512 GB",NULL
+4,Lysol,Hoursekeeping,"2022-10-25 00:33:33","Sealed in original packaging","Brand New","2022-10-25 00:33:33",9.9,1,"Laundry detergent 500ml",NULL
+5,Google,"Phone & Tablet","2022-10-25 00:40:13","Screen is damaged.","For Parts or Not Working","2022-10-25 00:40:13",129,1,"Pixel 5XL",NULL

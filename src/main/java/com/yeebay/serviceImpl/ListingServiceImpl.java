@@ -1,5 +1,6 @@
 package com.yeebay.serviceImpl;
 
+import com.yeebay.dto.ListingValidation;
 import com.yeebay.model.Listing;
 import com.yeebay.repository.ListingRepository;
 import com.yeebay.service.ListingService;
@@ -26,6 +27,13 @@ public class ListingServiceImpl implements ListingService {
 
     @Override
     public void save(Listing listing) {
+        listingRepository.save(listing);
+    }
+
+    @Override
+    public void save(ListingValidation listingValidation) {
+        Listing listing = new Listing(Integer.valueOf(0), listingValidation.getTitle(), listingValidation.getCategory(), listingValidation.getBrand(),
+                listingValidation.getItemCondition(), listingValidation.getPrice(), listingValidation.getDescription(), listingValidation.getSeller(), Integer.valueOf(1), listingValidation.getDateCreated(), listingValidation.getLastModified());
         listingRepository.save(listing);
     }
 
